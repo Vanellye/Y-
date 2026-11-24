@@ -4,21 +4,23 @@ A standalone project repository for Ŷæṛö (Yaro).
 
 ## Purpose
 
-Establish a provenance-preserving foundation for future language, tooling, and research work. The repository begins with explicit evidence classes, immutable source references, reversible transformation lineage, and human-reviewed changes.
+Establish a provenance-preserving foundation with a standards-backed JSON Schema validation engine.
 
 ## Start here
 
 - [Foundation and invariants](docs/FOUNDATION.md)
+- [Validation trust model](docs/VALIDATION-TRUST-MODEL.md)
+- [Schema bootstrap validator](validator/README.md)
 - [Provenance manifest](provenance/manifest.json)
 - [Manifest schema](provenance/manifest.schema.json)
 
 ## Validate
 
-Requires Bash and jq:
+Requires JDK 11+ and Maven:
 
 ```bash
 bash scripts/validate-provenance.sh
 bash tests/validate-provenance.sh
 ```
 
-This bootstrap does not claim that a Ɣơ compiler, parser, runtime, or imported source corpus exists yet.
+The validator establishes schema conformance, not factual truth or authorization. Ɣơ implementation parity remains a future conformance milestone.

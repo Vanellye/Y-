@@ -1,6 +1,6 @@
 # Yaro Foundation
 
-This repository is the standalone home for Ŷæṛö (Yaro). This foundation establishes a language-neutral provenance record before implementation begins.
+This repository is the standalone home for Ŷæṛö (Yaro). This foundation establishes a provenance-preserving record and a standards-backed validation reference.
 
 ## Non-negotiable invariants
 
@@ -15,21 +15,20 @@ This repository is the standalone home for Ŷæṛö (Yaro). This foundation est
 ## Initial structure
 
 - `provenance/manifest.json`: initial repository provenance record.
-- `provenance/manifest.schema.json`: JSON Schema contract for provenance records.
-- `scripts/validate-provenance.sh`: dependency-light structural validator (requires Bash and jq).
+- `provenance/manifest.schema.json`: JSON Schema Draft 2020-12 contract.
+- `validator/`: pinned JVM JSON Schema reference engine and tests.
+- `scripts/validate-provenance.sh`: bootstrap entry point for full schema validation.
 - `tests/`: positive and negative validation fixtures.
 - `.github/workflows/validate.yml`: pull-request and push validation.
 
 ## Status boundaries
 
-This is a bootstrap foundation, not a completed Ɣơ compiler, parser, runtime, or semantic authority. No source repository has been imported by this commit. The initial manifest records the repository's own bootstrap commit as the first anchor; later commits must update the manifest with exact immutable references and digests.
+The validator is a schema-conformance authority for its pinned engine, dialect, configuration, and resolved resources. It is not a factual truth oracle, provenance authenticator, or authorization system. No Ɣơ compiler, parser, runtime, or imported source corpus is claimed by this foundation.
 
 ## Validation
 
-Run locally:
+Requires JDK 11+ and Maven:
 
 ```bash
 bash scripts/validate-provenance.sh
 ```
-
-The validator checks the manifest's required fields and enumerated evidence/status values. It does not prove the truth of claims, verify remote signatures, or replace independent review.

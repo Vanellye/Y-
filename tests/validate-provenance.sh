@@ -9,4 +9,4 @@ if MANIFEST_PATH="$ROOT/tests/fixtures/invalid-manifest.json" bash "$ROOT/script
   exit 1
 fi
 
-echo "PASS: invalid fixture is rejected"
+echo "PASS: invalid fixture is rejected by the full JSON Schema validator"

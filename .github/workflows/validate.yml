@@ -14,9 +14,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install jq
-        run: sudo apt-get update && sudo apt-get install -y jq
-      - name: Validate provenance
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "11"
+          cache: maven
+      - name: Run JVM reference validator and manifest checks
         run: bash scripts/validate-provenance.sh
-      - name: Validate positive and negative fixtures
+      - name: Verify invalid manifest is rejected
         run: bash tests/validate-provenance.sh
