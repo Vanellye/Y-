@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "project": {
+    "name": "Ŷæṛö",
+    "repository": "Vanellye/Y-"
+  },
+  "created_at": "2026-11-24T08:00:00Z",
+  "evidence_class": "VERIFIED",
+  "status": "APPLIED",
+  "sources": [
+    {
+      "source_id": "repo-bootstrap",
+      "kind": "git-commit",
+      "locator": "https://github.com/Vanellye/Y-/commit/0035f4d8c4db9905cd7a164c58d4341e1a39b00c",
+      "revision": "0035f4d8c4db9905cd7a164c58d4341e1a39b00c",
+      "digest": null,
+      "evidence_class": "VERIFIED"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "foundation-commit",
+      "path": "repository bootstrap",
+      "digest": null,
+      "status": "APPLIED"
+    }
+  ],
+  "transformations": []
+}

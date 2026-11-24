@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.0",
+  "project": {
+    "name": "wrong",
+    "repository": ""
+  },
+  "created_at": "",
+  "evidence_class": "MAGIC",
+  "status": "DONE",
+  "sources": [],
+  "artifacts": [],
+  "transformations": []
+}

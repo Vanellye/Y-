@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Vanellye/Y-/blob/main/provenance/manifest.schema.json",
+  "title": "Yaro provenance manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "project",
+    "created_at",
+    "evidence_class",
+    "status",
+    "sources",
+    "artifacts",
+    "transformations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "repository"
+      ],
+      "properties": {
+        "name": {
+          "const": "Ŷæṛö"
+        },
+        "repository": {
+          "const": "Vanellye/Y-"
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "evidence_class": {
+      "enum": [
+        "VERIFIED",
+        "DERIVED",
+        "HYPOTHESIS",
+        "SUBJECTIVE",
+        "METAPHOR",
+        "UNKNOWN",
+        "CONTRADICTED"
+      ]
+    },
+    "status": {
+      "enum": [
+        "PROPOSED",
+        "APPLIED",
+        "VERIFIED",
+        "FAILED",
+        "NOT_RUN",
+        "BLOCKED"
+      ]
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/artifact"
+      }
+    },
+    "transformations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/transformation"
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "kind",
+        "locator",
+        "revision",
+        "digest",
+        "evidence_class"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "digest": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^([0-9a-f]{64})$"
+        },
+        "evidence_class": {
+          "enum": [
+            "VERIFIED",
+            "DERIVED",
+            "HYPOTHESIS",
+            "SUBJECTIVE",
+            "METAPHOR",
+            "UNKNOWN",
+            "CONTRADICTED"
+          ]
+        }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_id",
+        "path",
+        "digest",
+        "status"
+      ],
+      "properties": {
+        "artifact_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "digest": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^([0-9a-f]{64})$"
+        },
+        "status": {
+          "enum": [
+            "PROPOSED",
+            "APPLIED",
+            "VERIFIED",
+            "FAILED",
+            "NOT_RUN",
+            "BLOCKED"
+          ]
+        }
+      }
+    },
+    "transformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "transformation_id",
+        "inputs",
+        "output",
+        "method",
+        "status"
+      ],
+      "properties": {
+        "transformation_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "output": {
+          "type": "string",
+          "minLength": 1
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "PROPOSED",
+            "APPLIED",
+            "VERIFIED",
+            "FAILED",
+            "NOT_RUN",
+            "BLOCKED"
+          ]
+        }
+      }
+    }
+  }
+}

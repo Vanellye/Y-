@@ -1,0 +1,22 @@
+name: Validate foundation
+
+on:
+  push:
+    branches: ["main", "feature/**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  provenance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+      - name: Validate provenance
+        run: bash scripts/validate-provenance.sh
+      - name: Validate positive and negative fixtures
+        run: bash tests/validate-provenance.sh
