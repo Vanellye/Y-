@@ -1,6 +1,5 @@
 package org.yaro.validator;
 
-import com.networknt.schema.Dialects;
 import com.networknt.schema.Error;
 import com.networknt.schema.InputFormat;
 import com.networknt.schema.Schema;
@@ -54,7 +53,7 @@ class SchemaValidateTest {
     }
 
     @Test void validatesSchemaAgainstItsMetaSchema() {
-        Schema meta = registry.getSchema(Dialects.getDraft202012().getId());
+        Schema meta = registry.getSchema("https://json-schema.org/draft/2020-12/schema");
         assertTrue(meta.validate("{\"type\":\"string\"}", InputFormat.JSON).isEmpty());
         assertFalse(meta.validate("{\"type\":\"not-a-json-schema-type\"}", InputFormat.JSON).isEmpty());
     }
