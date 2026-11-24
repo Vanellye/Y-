@@ -24,3 +24,9 @@ jobs:
         run: bash scripts/validate-provenance.sh
       - name: Verify invalid manifest is rejected
         run: bash tests/validate-provenance.sh
+      - name: Compile and run Yaro Ɣơ Kotlin adapter
+        run: |
+          curl -fsSL https://github.com/JetBrains/kotlin/releases/download/v2.2.20/kotlin-compiler-2.2.20.zip -o /tmp/kotlin.zip
+          unzip -q /tmp/kotlin.zip -d /tmp/kotlin-dist
+          /tmp/kotlin-dist/kotlinc/bin/kotlinc language/og/kotlin/YoroStarCodec.kt -include-runtime -d /tmp/yaro-yoro-codec.jar
+          java -jar /tmp/yaro-yoro-codec.jar language/og/test-vectors/yoro-star-v2.tsv
