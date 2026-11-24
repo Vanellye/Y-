@@ -3,6 +3,7 @@ package org.yaro.validator;
 import com.networknt.schema.Error;
 import com.networknt.schema.InputFormat;
 import com.networknt.schema.Schema;
+import com.networknt.schema.SchemaLocation;
 import com.networknt.schema.SchemaRegistry;
 import com.networknt.schema.SchemaRegistryConfig;
 import com.networknt.schema.SpecificationVersion;
@@ -53,7 +54,9 @@ class SchemaValidateTest {
     }
 
     @Test void validatesSchemaAgainstItsMetaSchema() {
-        Schema meta = registry.getSchema("https://json-schema.org/draft/2020-12/schema");
+        Schema meta = registry.getSchema(
+            SchemaLocation.of("https://json-schema.org/draft/2020-12/schema")
+        );
         assertTrue(meta.validate("{\"type\":\"string\"}", InputFormat.JSON).isEmpty());
         assertFalse(meta.validate("{\"type\":\"not-a-json-schema-type\"}", InputFormat.JSON).isEmpty());
     }
