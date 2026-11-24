@@ -3,6 +3,7 @@ package org.yaro.validator;
 import com.networknt.schema.Error;
 import com.networknt.schema.InputFormat;
 import com.networknt.schema.Schema;
+import com.networknt.schema.SchemaLocation;
 import com.networknt.schema.SchemaRegistry;
 import com.networknt.schema.SchemaRegistryConfig;
 import com.networknt.schema.SpecificationVersion;
@@ -37,7 +38,9 @@ public final class SchemaValidate {
                 if (!"--check-schema".equals(args[2])) {
                     throw new IllegalArgumentException("Unknown option: " + args[2]);
                 }
-                Schema metaSchema = registry.getSchema("https://json-schema.org/draft/2020-12/schema");
+                Schema metaSchema = registry.getSchema(
+                    SchemaLocation.of("https://json-schema.org/draft/2020-12/schema")
+                );
                 List<Error> schemaErrors = metaSchema.validate(schemaText, InputFormat.JSON);
                 if (!schemaErrors.isEmpty()) {
                     printErrors("SCHEMA_INVALID", schemaErrors);
