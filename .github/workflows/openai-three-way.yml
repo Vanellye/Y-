@@ -1,0 +1,38 @@
+name: Ɣơ three-way OpenAI exercise
+
+on:
+  push:
+    branches: ["feature/three-way-openai-track"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  openai-exercise:
+    name: OpenAI model exercise (optional credential)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Exercise shared Ɣơ vectors through OpenAI API
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+        run: |
+          python scripts/three-way/openai_exercise.py language/og/test-vectors/yoro-star-v2.tsv | tee openai-track-result.txt
+      - name: Publish track status
+        if: always()
+        run: |
+          echo "## OpenAI track" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f openai-track-result.txt ]; then
+            cat openai-track-result.txt >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "OPENAI_TRACK=NOT_RUN (exercise step did not produce a result)" >> "$GITHUB_STEP_SUMMARY"
+          fi
