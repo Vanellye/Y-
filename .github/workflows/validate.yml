@@ -1,4 +1,4 @@
-name: Validate foundation
+name: I.C. Opposition — Yaro foundation validation
 
 on:
   push:
@@ -9,7 +9,8 @@ permissions:
   contents: read
 
 jobs:
-  provenance:
+  opposition:
+    name: Diagnostic opposition and validation
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,11 +21,11 @@ jobs:
           distribution: temurin
           java-version: "11"
           cache: maven
-      - name: Run JVM reference validator and manifest checks
+      - name: Challenge provenance claims with the JVM reference validator
         run: bash scripts/validate-provenance.sh
-      - name: Verify invalid manifest is rejected
+      - name: Confirm invalid manifests are rejected
         run: bash tests/validate-provenance.sh
-      - name: Compile and run Yaro Ɣơ Kotlin adapter
+      - name: Cross-check Yaro Ɣơ Kotlin adapter against shared vectors
         run: |
           curl -fsSL https://github.com/JetBrains/kotlin/releases/download/v2.2.20/kotlin-compiler-2.2.20.zip -o /tmp/kotlin.zip
           unzip -q /tmp/kotlin.zip -d /tmp/kotlin-dist
